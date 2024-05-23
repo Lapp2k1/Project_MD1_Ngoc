@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Account</title>
+    <link rel="stylesheet" href="./manage-account.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Public Sans:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    />
+    <script
+      src="https://kit.fontawesome.com/7b988689d5.js"
+      crossorigin="anonymous"
+      defer=""
+    ></script>
+  </head>
+  <body>
+    <!--------------------header----------------------------------->
+    <header>
+      <div class="logo">
+        <img class="icon" alt="Company Logo" src="../../public/icon.svg" />
+        <h1 class="clicon">CLICON</h1>
+        <h3>Chào mừng đến trang admin</h3>
+      </div>
+
+      <div class="admin">
+        <h4 class="admin-name">Ngọc Sora</h4>
+        <span class="admin-container">
+          <img
+            class="admin-img"
+            src="https://avatars.githubusercontent.com/u/165108084?v=4"
+            alt=""
+          />
+          <div class="admin-menu" id="adminMenu">
+            <a class="log-out" href="http://127.0.0.1:5500/Login/login.html"
+              >Logout</a
+            >
+          </div>
+        </span>
+      </div>
+    </header>
+
+    <!-- /* ---------------------------Sidebar-------------------- */ -->
+
+    <aside>
+      <div class="sidebar">
+        <a
+          href="http://127.0.0.1:5500/adminpage/admin.html"
+          class="manage manage-general"
+          >Dashboard</a
+        >
+        <a href="#" class="manage manage-account">Quản lý tài khoản</a>
+        <a href="manage-list.html" class="manage manage-list"
+          >Quản lý danh mục</a
+        >
+        <a href="manage-product.html" class="manage manage-product"
+          >Quản lý sản phẩm</a
+        >
+        <a href="manage-order.html" class="manage manage-order"
+          >Quản lý đơn hàng</a
+        >
+      </div>
+      <!-- -----------------phần quản lý user-------------- -->
+      <div class="manage-account-container">
+        <span class="sort-function"><label for="sort">Sắp xếp user theo tên:</label>
+            <select name="sortoption" id="sortOption">
+              <option value="az">A-Z</option>
+              <option value="za">Z-A</option>
+            </select></span>
+            <h1>DANH SÁCH NGƯỜI DÙNG</h1>
+        <div class="search-bar-container">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm user...">
+            <button id="searchButton">Tìm kiếm</button>
+          </div>
+      </div>
+      <div id="table" class="table-body">
+        <table class="table-inner">
+          <thead class="table-thead">
+            <tr class="table-tr">
+              <th class="table-th" width="10%">STT</th>
+              <th class="table-th">Username</th>
+              <th class="table-th">Email</th>
+              <th class="table-th">Permission</th>
+              <th class="table-th">Status</th>
+              <th class="table-th">Action</th>
+            </tr>
+          </thead>
+          <tbody id="categoryBody"></tbody>
+        </table>
+      </div>
+    </aside>
+    <script src="./manage-account.js"></script>
+  </body>
+</html>
