@@ -184,6 +184,7 @@
     cursor: pointer; /* Indicate clickable elements */
     background-color: #f0f0f0;
     margin: 0 5px; /* Add spacing between buttons */
+    display: block;
   }
   
   .prev-page[disabled],
