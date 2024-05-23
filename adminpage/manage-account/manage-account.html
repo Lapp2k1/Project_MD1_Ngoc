@@ -65,35 +65,43 @@
           >Quản lý đơn hàng</a
         >
       </div>
-      <!-- -----------------phần quản lý user-------------- -->
-      <div class="manage-account-container">
-        <span class="sort-function"><p> Sắp xếp user theo tên:</p>
-            <select name="sortoption" id="sortOption">
-              <option value="az">A-Z</option>
-              <option value="za">Z-A</option>
-            </select></span>
-            <h1>DANH SÁCH NGƯỜI DÙNG</h1>
-        <div class="search-bar-container">
-            <input type="text" id="searchInput" placeholder="Tìm kiếm user...">
-            <button id="searchButton">Tìm kiếm</button>
-          </div>
-      </div>
-      <div id="table" class="table-body">
-        <table class="table-inner">
-          <thead class="table-thead">
-            <tr class="table-tr">
-              <th class="table-th" width="10%">STT</th>
-              <th class="table-th">Username</th>
-              <th class="table-th">Email</th>
-              <th class="table-th">Permission</th>
-              <th class="table-th">Status</th>
-              <th class="table-th">Action</th>
-            </tr>
-          </thead>
-          <tbody id="categoryBody"></tbody>
-        </table>
-      </div>
     </aside>
+    <!-- -----------------phần quản lý user-------------- -->
+    <div class="manage-account-container">
+      <span class="sort-function"
+        ><p>Sắp xếp user theo tên:</p>
+        <select name="sortoption" id="sortOption">
+          <option value="az">A-Z</option>
+          <option value="za">Z-A</option>
+        </select></span
+      >
+      <h1>DANH SÁCH NGƯỜI DÙNG</h1>
+      <div class="search-bar-container">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm user..." />
+        <button id="searchButton">Tìm kiếm</button>
+      </div>
+    </div>
+    <div id="table" class="table-body">
+      <table class="table-inner">
+        <thead class="table-thead">
+          <tr class="table-tr">
+            <th class="table-th" width="10%">STT</th>
+            <th class="table-th">Username</th>
+            <th class="table-th">Email</th>
+            <th class="table-th">Permission</th>
+            <th class="table-th">Status</th>
+            <th class="table-th">Action</th>
+          </tr>
+        </thead>
+        <tbody id="categoryBody"></tbody>
+      </table>
+    </div>
+    <div class="pagination-container">
+      <button class="prev-page" disabled>Previous</button>
+      <span class="current-page">Page 1</span>
+      <button class="next-page">Next</button>
+    </div>
+    
     <script src="./manage-account.js"></script>
   </body>
 </html>

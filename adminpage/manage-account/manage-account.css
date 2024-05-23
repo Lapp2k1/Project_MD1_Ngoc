@@ -167,3 +167,32 @@
     background-color: #45a049; /* Darker green on hover */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow */
   }
+
+  .pagination-container {
+    display: flex; /* Arrange elements horizontally */
+    justify-content: center; /* Center elements */
+    position: relative;
+    top: 500px;
+    left: 500px;
+  }
+  
+  .prev-page,
+  .next-page {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer; /* Indicate clickable elements */
+    background-color: #f0f0f0;
+    margin: 0 5px; /* Add spacing between buttons */
+  }
+  
+  .prev-page[disabled],
+  .next-page[disabled] {
+    cursor: default; /* Remove pointer for disabled buttons */
+    opacity: 0.5; /* Make disabled buttons appear slightly faded */
+  }
+  
+  .current-page {
+    font-weight: bold;
+  }
+  
