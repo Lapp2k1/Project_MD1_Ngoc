@@ -15,7 +15,7 @@ function render() {
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   let stringHTML = ""; // Initialize empty string for HTML
-
+  
   userData.forEach((user, i) => {
     stringHTML += `
         <tr>
@@ -41,6 +41,91 @@ function render() {
   });
 
   tableBody.innerHTML = stringHTML; // Set the table body HTML with the generated string
+  
 }
 render();
-// ---------------------function sortuser--------------------
+// ---------------------function sortuser--------------------(Lỗi chưa sort A-Z được ngay)
+let userData = JSON.parse(localStorage.getItem("userData"));
+document.getElementById("sortOption").addEventListener('change', (event) => {
+  console.log(event.target.value);
+  if (event.target.value === "az") {
+    function compare(a, b) {
+      if (a.userName < b.userName) {
+        return -1;
+      }
+      if (a.userName > b.userName) {
+        return 1;
+      }
+      return 0;
+    }
+  
+    userData.sort(compare);
+    let stringHTML = ""; // Initialize empty string for HTML
+    const tableBody = document.getElementById("categoryBody");
+    userData.forEach((user, i) => {
+      stringHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${user.userName}</td>
+            <td>${user.email}</td>
+            <td>${user.permission}</td>
+            <td>${user.status}</td>
+            <td>
+            ${user.permission === "admin" ? "" : ` `}
+            ${
+              user.permission !== "admin"
+                ? `
+              <button class="action-button update-button" data-user-id="${user.id}">Update</button>
+              <button class="action-button block-button" data-user-id="${user.id}">Block</button>
+              <button class="action-button delete-button" data-user-id="${user.id}">Delete</button>
+            `
+                : ""
+            }
+            </td>
+          </tr>
+        `;
+    });
+  
+    tableBody.innerHTML = stringHTML;
+  } else if(event.target.value === "za"){function compare(a, b) {
+    if (a.userName < b.userName) {
+      return 1;
+    }
+    if (a.userName > b.userName) {
+      return -1;
+    }
+    return 0;
+  }
+
+  userData.sort(compare);
+
+  let stringHTML = ""; // Initialize empty string for HTML
+  const tableBody = document.getElementById("categoryBody");
+  userData.forEach((user, i) => {
+    stringHTML += `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${user.userName}</td>
+          <td>${user.email}</td>
+          <td>${user.permission}</td>
+          <td>${user.status}</td>
+          <td>
+          ${user.permission === "admin" ? "" : ` `}
+          ${
+            user.permission !== "admin"
+              ? `
+            <button class="action-button update-button" data-user-id="${user.id}">Update</button>
+            <button class="action-button block-button" data-user-id="${user.id}">Block</button>
+            <button class="action-button delete-button" data-user-id="${user.id}">Delete</button>
+          `
+              : ""
+          }
+          </td>
+        </tr>
+      `;
+  });
+
+  tableBody.innerHTML = stringHTML;}
+});
+  
+
