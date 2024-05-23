@@ -12,10 +12,10 @@
         <option value="option3">Gateway 3</option>
     </select>;
     <script>
-      document.getElementById("select").addEventListener("change", (event) => {
-        console.log(event.target.value);
-      });
-     
+    let userData = JSON.parse(localStorage.getItem("userData"));
+
+   
+console.log(userData);
     
     </script>
   </body>
