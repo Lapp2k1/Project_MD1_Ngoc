@@ -18,3 +18,12 @@ if (!localStorage.getItem("userData")) {
 document.querySelector(".user-icon").addEventListener("click", function () {
   document.getElementById("userMenu").style.display = "block";
 });
+document.querySelector('.category').addEventListener('click', function() {
+  let categoryItems = document.getElementById('category-items');
+
+  if (categoryItems.style.display === 'none') {
+    categoryItems.style.display = 'flex';
+  } else {
+    categoryItems.style.display = 'none';
+  }
+});
