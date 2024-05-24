@@ -31,9 +31,15 @@ function render(data) {
           ${
             user.permission !== "admin"
               ? `
-            <button class="action-button update-button" data-user-id="${user.id}">Update</button>
-            <button class="action-button block-button" data-user-id="${user.id}">Block</button>
-            <button class="action-button delete-button" data-user-id="${user.id}">Delete</button>
+            <button class="action-button update-button" data-user-id="${
+              user.id
+            }">Update</button>
+            <button class="action-button block-button" data-user-id="${
+              user.id
+            }">${(user.status === "block")? "Unblock" : "Block"} </button>
+            <button class="action-button delete-button" data-user-id="${
+              user.id
+            }">Delete</button>
           `
               : ""
           }
@@ -224,12 +230,14 @@ document.addEventListener("click", function (event) {
 
         // Ẩn form update
         document.getElementById("updateUserForm").style.display = "none";
- // Cập nhật bảng
+        // Cập nhật bảng
         displayAndSortTable(userData);
       });
-      document.getElementById('cancelUpdate').addEventListener('click', function() {
+    document
+      .getElementById("cancelUpdate")
+      .addEventListener("click", function () {
         // Ẩn form update
-        document.getElementById('updateUserForm').style.display = 'none';
+        document.getElementById("updateUserForm").style.display = "none";
       });
   }
 });
@@ -259,9 +267,8 @@ document.addEventListener("click", function (event) {
 
     // Lưu lại dữ liệu user vào localStorage
     localStorage.setItem("userData", JSON.stringify(userData));
- // Cập nhật bảng
-   displayAndSortTable(userData);
-    
+    // Cập nhật bảng
+    displayAndSortTable(userData);
   }
 });
 

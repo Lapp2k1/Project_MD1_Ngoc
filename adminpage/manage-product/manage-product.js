@@ -15,6 +15,7 @@ document.querySelector(".log-out").addEventListener("click", function () {
 });
 
 // Global render function
+let productData = JSON.parse(localStorage.getItem("productData")) || [];
 function render(data) {
   const tableBody = document.getElementById("categoryBody");
   let stringHTML = "";
@@ -23,20 +24,18 @@ function render(data) {
     stringHTML += `
       <tr>
         <td>${i + 1}</td>
-        <td>${user.userName}</td>
-        <td>${user.email}</td>
-        <td>${user.permission}</td>
+        <td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.quantity}</td>
+        <td>${user.price}</td>
+        <td>${user.category}</td>
         <td>${user.status}</td>
         <td>
-          ${
-            user.permission !== "admin"
-              ? `
+          ${`
             <button class="action-button update-button" data-user-id="${user.id}">Update</button>
-            <button class="action-button block-button" data-user-id="${user.id}">Block</button>
+            <button class="action-button block-button" data-user-id="${user.id}">${(user.status === "available")? "Block" : "Unblock"}</button>
             <button class="action-button delete-button" data-user-id="${user.id}">Delete</button>
-          `
-              : ""
-          }
+          `}
         </td>
       </tr>`;
   });
@@ -46,27 +45,27 @@ function render(data) {
 
 // Define function to display and sort table
 function displayAndSortTable(sortOrder) {
-  let userData = JSON.parse(localStorage.getItem("userData")) || [];
+  let productData = JSON.parse(localStorage.getItem("productData")) || [];
   const tableBody = document.getElementById("categoryBody");
   const itemsPerPage = 3; //Số item trên trang phân chia
 
   // Sort function
   function compare(a, b) {
     if (sortOrder === "az") {
-      return a.userName.localeCompare(b.userName);
+      return a.name.localeCompare(b.name);
     } else if (sortOrder === "za") {
-      return b.userName.localeCompare(a.userName);
+      return b.name.localeCompare(a.name);
     }
   }
   let currentPage = 1;
-  // Sort userData
-  userData.sort(compare);
+  // Sort productData
+  productData.sort(compare);
 
   // Display page function
   function displayPage(page) {
     let startIndex = (page - 1) * itemsPerPage;
     let endIndex = startIndex + itemsPerPage;
-    let pageItems = userData.slice(startIndex, endIndex);
+    let pageItems = productData.slice(startIndex, endIndex);
 
     render(pageItems);
     document.querySelector(".current-page").textContent = `Page ${page}`;
@@ -75,7 +74,7 @@ function displayAndSortTable(sortOrder) {
     let prevButton = document.querySelector(".prev-page");
     let nextButton = document.querySelector(".next-page");
     prevButton.disabled = page === 1;
-    nextButton.disabled = page === Math.ceil(userData.length / itemsPerPage);
+    nextButton.disabled = page === Math.ceil(productData.length / itemsPerPage);
   }
 
   // Chạy hàm khởi tạo
@@ -89,7 +88,7 @@ function displayAndSortTable(sortOrder) {
   });
 
   document.querySelector(".next-page").addEventListener("click", () => {
-    if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+    if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
       currentPage++;
       displayPage(currentPage);
     }
@@ -113,18 +112,18 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
     .toLowerCase(); // Lowercase search term for case-insensitive matching
 
   // Get user data (assuming you have a way to retrieve it)
-  let userData = JSON.parse(localStorage.getItem("userData")) || [];
-  let foundUsers = []; // Initialize an empty array to store matching users
+  let productData = JSON.parse(localStorage.getItem("productData")) || [];
+  let foundProducts = []; // Initialize an empty array to store matching users
 
   // Filter user data based on search term
-  userData.forEach((user) => {
-    const userNameLower = user.userName.toLowerCase();
+  productData.forEach((user) => {
+    const nameLower = user.name.toLowerCase();
     const emailLower = user.email.toLowerCase();
     if (
-      userNameLower.indexOf(searchTerm) !== -1 ||
+      nameLower.indexOf(searchTerm) !== -1 ||
       emailLower.indexOf(searchTerm) !== -1
     ) {
-      foundUsers.push(user); // Add matching user to foundUsers array
+      foundProducts.push(user); // Add matching user to foundProducts array
     }
   });
 
@@ -136,20 +135,20 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
     // Sort function
     function compare(a, b) {
       if (sortOrder === "az") {
-        return a.userName.localeCompare(b.userName);
+        return a.name.localeCompare(b.name);
       } else if (sortOrder === "za") {
-        return b.userName.localeCompare(a.userName);
+        return b.name.localeCompare(a.name);
       }
     }
 
-    // Sort userData
-    foundUsers.sort(compare);
+    // Sort productData
+    foundProducts.sort(compare);
 
     // Display page function
     function displayPage(page) {
       let startIndex = (page - 1) * itemsPerPage;
       let endIndex = startIndex + itemsPerPage;
-      let pageItems = foundUsers.slice(startIndex, endIndex);
+      let pageItems = foundProducts.slice(startIndex, endIndex);
 
       render(pageItems);
       document.querySelector(".current-page").textContent = `Page ${page}`;
@@ -159,7 +158,7 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
       let nextButton = document.querySelector(".next-page");
       prevButton.disabled = page === 1;
       nextButton.disabled =
-        page === Math.ceil(foundUsers.length / itemsPerPage);
+        page === Math.ceil(foundProducts.length / itemsPerPage);
     }
 
     // Chạy hàm khởi tạo
@@ -174,7 +173,7 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
     });
 
     document.querySelector(".next-page").addEventListener("click", () => {
-      if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+      if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
         currentPage++;
         displayPage(currentPage);
       }
@@ -209,9 +208,9 @@ document.addEventListener("click", function (event) {
         const email = document.getElementById("email").value;
         const permission = document.getElementById("permission").value;
 
-        // Cập nhật userData
-        let userData = JSON.parse(localStorage.getItem("userData")) || [];
-        userData.forEach((user) => {
+        // Cập nhật productData
+        let productData = JSON.parse(localStorage.getItem("productData")) || [];
+        productData.forEach((user) => {
           if (user.id === userId) {
             user.userName = username;
             user.email = email;
@@ -219,17 +218,19 @@ document.addEventListener("click", function (event) {
           }
         });
 
-        // Lưu lại userData vào localStorage
-        localStorage.setItem("userData", JSON.stringify(userData));
+        // Lưu lại productData vào localStorage
+        localStorage.setItem("productData", JSON.stringify(productData));
 
         // Ẩn form update
         document.getElementById("updateUserForm").style.display = "none";
- // Cập nhật bảng
-        displayAndSortTable(userData);
+        // Cập nhật bảng
+        displayAndSortTable(productData);
       });
-      document.getElementById('cancelUpdate').addEventListener('click', function() {
+    document
+      .getElementById("cancelUpdate")
+      .addEventListener("click", function () {
         // Ẩn form update
-        document.getElementById('updateUserForm').style.display = 'none';
+        document.getElementById("updateUserForm").style.display = "none";
       });
   }
 });
@@ -242,26 +243,25 @@ document.addEventListener("click", function (event) {
     const userId = Number(event.target.dataset.userId); // Chuyển đổi userId thành số
 
     // Lấy dữ liệu user từ localStorage
-    let userData = JSON.parse(localStorage.getItem("userData")) || [];
+    let productData = JSON.parse(localStorage.getItem("productData")) || [];
 
     // Tìm user dựa trên userId và thay đổi trạng thái
-    userData.forEach((user) => {
+    productData.forEach((user) => {
       if (user.id === userId) {
-        if (user.status === "block") {
-          user.status = "inactive";
+        if (user.status === "available") {
+          user.status = "unavailable";
           event.target.innerHTML = "Block";
         } else {
-          user.status = "block";
+          user.status = "available";
           event.target.innerHTML = "Unblock";
         }
       }
     });
 
     // Lưu lại dữ liệu user vào localStorage
-    localStorage.setItem("userData", JSON.stringify(userData));
- // Cập nhật bảng
-   displayAndSortTable(userData);
-    
+    localStorage.setItem("productData", JSON.stringify(productData));
+    // Cập nhật bảng
+    displayAndSortTable(productData);
   }
 });
 
@@ -278,13 +278,13 @@ document.addEventListener("click", function (event) {
     if (confirmDelete) {
       console.log("delete");
       // Xóa user khỏi localStorage
-      let userData = JSON.parse(localStorage.getItem("userData")) || [];
-      userData = userData.filter((user) => user.id !== userId);
-      localStorage.setItem("userData", JSON.stringify(userData));
+      let productData = JSON.parse(localStorage.getItem("productData")) || [];
+      productData = productData.filter((user) => user.id !== userId);
+      localStorage.setItem("productData", JSON.stringify(productData));
 
       // Cập nhật bảng
 
-      displayAndSortTable(userData);
+      displayAndSortTable(productData);
     }
   }
 });

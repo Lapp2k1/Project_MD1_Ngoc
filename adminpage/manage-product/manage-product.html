@@ -54,11 +54,17 @@
           class="manage manage-general"
           >Dashboard</a
         >
-        <a href="#" class="manage manage-account">Quản lý tài khoản</a>
+        <a
+          href="http://127.0.0.1:5500/adminpage/manage-account/manage-account.html"
+          class="manage manage-account"
+          >Quản lý tài khoản</a
+        >
         <a href="manage-list.html" class="manage manage-list"
           >Quản lý danh mục</a
         >
-        <a href="http://127.0.0.1:5500/adminpage/manage-product/manage-product.html" class="manage manage-product"
+        <a
+          href="http://127.0.0.1:5500/adminpage/manage-product/manage-product.html"
+          class="manage manage-product"
           >Quản lý sản phẩm</a
         >
         <a href="manage-order.html" class="manage manage-order"
@@ -75,9 +81,13 @@
           <option value="za">Z-A</option>
         </select></span
       >
-      <h1>DANH SÁCH NGƯỜI DÙNG</h1>
+      <h1>DANH SÁCH SẢN PHẨM</h1>
       <div class="search-bar-container">
-        <input type="text" id="searchInput" placeholder="Tìm kiếm user..." />
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Tìm kiếm sản phẩm..."
+        />
         <button id="searchButton">Tìm kiếm</button>
       </div>
     </div>
@@ -86,10 +96,12 @@
         <thead class="table-thead">
           <tr class="table-tr">
             <th class="table-th" width="10%">STT</th>
-            <th class="table-th">Username</th>
-            <th class="table-th">Email</th>
-            <th class="table-th">Permission</th>
-            <th class="table-th">Status</th>
+            <th class="table-th">Mã sản phẩm</th>
+            <th class="table-th">Tên sản phẩm</th>
+            <th class="table-th">Số lượng</th>
+            <th class="table-th">Giá tiền</th>
+            <th class="table-th">Danh mục</th>
+            <th class="table-th">Tình trạng</th>
             <th class="table-th">Action</th>
           </tr>
         </thead>
@@ -101,17 +113,29 @@
       <span class="current-page">Page 1</span>
       <button class="next-page">Next</button>
     </div>
-    <!-- Update User Form -->
-<div id="updateUserForm" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc;">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username"><br>
-  <label for="email">Email:</label><br>
-  <input type="text" id="email" name="email"><br>
-  <label for="permission">Permission:</label><br>
-  <input type="text" id="permission" name="permission"><br>
-  <input type="button" value="Submit" id="submitUpdate">
-  <input type="button" value="Cancel" id="cancelUpdate">
-</div>
+    <!-- Update Product Form -->
+    <div
+      id="updateUserForm"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+      "
+    >
+      <label for="username">Username:</label><br />
+      <input type="text" id="username" name="username" /><br />
+      <label for="email">Email:</label><br />
+      <input type="text" id="email" name="email" /><br />
+      <label for="permission">Permission:</label><br />
+      <input type="text" id="permission" name="permission" /><br />
+      <input type="button" value="Submit" id="submitUpdate" />
+      <input type="button" value="Cancel" id="cancelUpdate" />
+    </div>
 
     <script src="./manage-product.js"></script>
   </body>
