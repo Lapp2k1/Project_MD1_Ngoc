@@ -36,7 +36,7 @@ function render(data) {
             }">Update</button>
             <button class="action-button block-button" data-user-id="${
               user.id
-            }">${(user.status === "block")? "Unblock" : "Block"} </button>
+            }">${user.status === "block" ? "Unblock" : "Block"} </button>
             <button class="action-button delete-button" data-user-id="${
               user.id
             }">Delete</button>
@@ -50,65 +50,58 @@ function render(data) {
   tableBody.innerHTML = stringHTML;
 }
 
-// Define function to display and sort table
-function displayAndSortTable(sortOrder) {
-  let userData = JSON.parse(localStorage.getItem("userData")) || [];
-  const tableBody = document.getElementById("categoryBody");
-  const itemsPerPage = 3; //Số item trên trang phân chia
+// Display page function
+function displayPage(page, data) {
+  let startIndex = (page - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let pageItems = data.slice(startIndex, endIndex);
 
-  // Sort function
-  function compare(a, b) {
-    if (sortOrder === "az") {
-      return a.userName.localeCompare(b.userName);
-    } else if (sortOrder === "za") {
-      return b.userName.localeCompare(a.userName);
-    }
-  }
-  let currentPage = 1;
-  // Sort userData
-  userData.sort(compare);
+  render(pageItems);
+  document.querySelector(".current-page").textContent = `Page ${page}`;
 
-  // Display page function
-  function displayPage(page) {
-    let startIndex = (page - 1) * itemsPerPage;
-    let endIndex = startIndex + itemsPerPage;
-    let pageItems = userData.slice(startIndex, endIndex);
-
-    render(pageItems);
-    document.querySelector(".current-page").textContent = `Page ${page}`;
-
-    //Cập nhật trạng thái button dựa trên trang hiện tại
-    let prevButton = document.querySelector(".prev-page");
-    let nextButton = document.querySelector(".next-page");
-    prevButton.disabled = page === 1;
-    nextButton.disabled = page === Math.ceil(userData.length / itemsPerPage);
-  }
-
-  // Chạy hàm khởi tạo
-  displayPage(currentPage);
-  // Tạo sự kiện phân trang
-  document.querySelector(".prev-page").addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      displayPage(currentPage);
-    }
-  });
-
-  document.querySelector(".next-page").addEventListener("click", () => {
-    if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
-      currentPage++;
-      displayPage(currentPage);
-    }
-  });
+  //Cập nhật trạng thái button dựa trên trang hiện tại
+  let prevButton = document.querySelector(".prev-page");
+  let nextButton = document.querySelector(".next-page");
+  prevButton.disabled = page === 1;
+  nextButton.disabled = page === Math.ceil(data.length / itemsPerPage);
 }
+// Sort function
+
+let userData = JSON.parse(localStorage.getItem("userData")) || [];
+const tableBody = document.getElementById("categoryBody");
+const itemsPerPage = 5; //Số item trên trang phân chia
+let currentPage = 1;
+render(userData);
+// Chạy hàm khởi tạo
+displayPage(currentPage, userData);
+// Tạo sự kiện phân trang
+document.querySelector(".prev-page").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    displayPage(currentPage, userData);
+  }
+});
+
+document.querySelector(".next-page").addEventListener("click", () => {
+  if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+    currentPage++;
+    displayPage(currentPage, userData);
+  }
+});
 
 // Tạo sự kiện onchange khi select sort
 document.getElementById("sortOption").addEventListener("change", (event) => {
   const sortOrder = event.target.value;
-  displayAndSortTable(sortOrder);
+  function compare(a, b) {
+    if (event.target.value === "az") {
+      return a.userName.localeCompare(b.userName);
+    } else if (event.target.value === "za") {
+      return b.userName.localeCompare(a.userName);
+    }
+  }
+  userData.sort(compare);
+  displayPage(currentPage, userData);
 });
-
-displayAndSortTable("az"); //Mặc định sort a-z
 
 // -------------------Tìm kiếm user---------------
 document.getElementById("searchButton").addEventListener("click", (event) => {
@@ -133,66 +126,37 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
       foundUsers.push(user); // Add matching user to foundUsers array
     }
   });
-
-  function displayAndSortTable(sortOrder) {
-    const tableBody = document.getElementById("categoryBody");
-    const itemsPerPage = 3; //Số item trên trang phân chia
-    let currentPage = 1;
-
-    // Sort function
-    function compare(a, b) {
-      if (sortOrder === "az") {
-        return a.userName.localeCompare(b.userName);
-      } else if (sortOrder === "za") {
-        return b.userName.localeCompare(a.userName);
-      }
+  render(foundUsers);
+  // Chạy hàm khởi tạo
+  displayPage(currentPage, foundUsers);
+  // Tạo sự kiện phân trang
+  document.querySelector(".prev-page").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      displayPage(currentPage, foundUsers);
     }
+  });
 
-    // Sort userData
-    foundUsers.sort(compare);
-
-    // Display page function
-    function displayPage(page) {
-      let startIndex = (page - 1) * itemsPerPage;
-      let endIndex = startIndex + itemsPerPage;
-      let pageItems = foundUsers.slice(startIndex, endIndex);
-
-      render(pageItems);
-      document.querySelector(".current-page").textContent = `Page ${page}`;
-
-      //Cập nhật trạng thái button dựa trên trang hiện tại
-      let prevButton = document.querySelector(".prev-page");
-      let nextButton = document.querySelector(".next-page");
-      prevButton.disabled = page === 1;
-      nextButton.disabled =
-        page === Math.ceil(foundUsers.length / itemsPerPage);
+  document.querySelector(".next-page").addEventListener("click", () => {
+    if (currentPage < Math.ceil(foundUsers.length / itemsPerPage)) {
+      currentPage++;
+      displayPage(currentPage, foundUsers);
     }
+  });
 
-    // Chạy hàm khởi tạo
-    displayPage(currentPage);
-
-    // Tạo sự kiện phân trang
-    document.querySelector(".prev-page").addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        displayPage(currentPage);
-      }
-    });
-
-    document.querySelector(".next-page").addEventListener("click", () => {
-      if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
-        currentPage++;
-        displayPage(currentPage);
-      }
-    });
-  }
   // Tạo sự kiện onchange khi select sort
   document.getElementById("sortOption").addEventListener("change", (event) => {
     const sortOrder = event.target.value;
-    displayAndSortTable(sortOrder);
+    function compare(a, b) {
+      if (event.target.value === "az") {
+        return a.userName.localeCompare(b.userName);
+      } else if (event.target.value === "za") {
+        return b.userName.localeCompare(a.userName);
+      }
+    }
+    foundUsers.sort(compare);
+    displayPage(currentPage, foundUsers);
   });
-
-  displayAndSortTable("az"); //Mặc định sort a-z
 });
 
 // -------------------Quản trị user---------------
@@ -231,7 +195,39 @@ document.addEventListener("click", function (event) {
         // Ẩn form update
         document.getElementById("updateUserForm").style.display = "none";
         // Cập nhật bảng
-        displayAndSortTable(userData);
+        render(userData);
+        // Chạy hàm khởi tạo
+        displayPage(currentPage, userData);
+        // Tạo sự kiện phân trang
+        document.querySelector(".prev-page").addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage, userData);
+          }
+        });
+
+        document.querySelector(".next-page").addEventListener("click", () => {
+          if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+            currentPage++;
+            displayPage(currentPage, userData);
+          }
+        });
+
+        // Tạo sự kiện onchange khi select sort
+        document
+          .getElementById("sortOption")
+          .addEventListener("change", (event) => {
+            const sortOrder = event.target.value;
+            function compare(a, b) {
+              if (event.target.value === "az") {
+                return a.userName.localeCompare(b.userName);
+              } else if (event.target.value === "za") {
+                return b.userName.localeCompare(a.userName);
+              }
+            }
+            userData.sort(compare);
+            displayPage(currentPage, userData);
+          });
       });
     document
       .getElementById("cancelUpdate")
@@ -242,7 +238,6 @@ document.addEventListener("click", function (event) {
   }
 });
 
-// Thêm sự kiện cho nút Block(Lỗi chưa hiện thị Unblock)
 // Thêm sự kiện cho nút Block
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("block-button")) {
@@ -268,7 +263,39 @@ document.addEventListener("click", function (event) {
     // Lưu lại dữ liệu user vào localStorage
     localStorage.setItem("userData", JSON.stringify(userData));
     // Cập nhật bảng
-    displayAndSortTable(userData);
+    render(userData);
+    // Chạy hàm khởi tạo
+    displayPage(currentPage, userData);
+    // Tạo sự kiện phân trang
+    document.querySelector(".prev-page").addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayPage(currentPage, userData);
+      }
+    });
+
+    document.querySelector(".next-page").addEventListener("click", () => {
+      if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+        currentPage++;
+        displayPage(currentPage, userData);
+      }
+    });
+
+    // Tạo sự kiện onchange khi select sort
+    document
+      .getElementById("sortOption")
+      .addEventListener("change", (event) => {
+        const sortOrder = event.target.value;
+        function compare(a, b) {
+          if (event.target.value === "az") {
+            return a.userName.localeCompare(b.userName);
+          } else if (event.target.value === "za") {
+            return b.userName.localeCompare(a.userName);
+          }
+        }
+        userData.sort(compare);
+        displayPage(currentPage, userData);
+      });
   }
 });
 
@@ -291,7 +318,39 @@ document.addEventListener("click", function (event) {
 
       // Cập nhật bảng
 
-      displayAndSortTable(userData);
+      render(userData);
+      // Chạy hàm khởi tạo
+      displayPage(currentPage, userData);
+      // Tạo sự kiện phân trang
+      document.querySelector(".prev-page").addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayPage(currentPage, userData);
+        }
+      });
+
+      document.querySelector(".next-page").addEventListener("click", () => {
+        if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
+          currentPage++;
+          displayPage(currentPage, userData);
+        }
+      });
+
+      // Tạo sự kiện onchange khi select sort
+      document
+        .getElementById("sortOption")
+        .addEventListener("change", (event) => {
+          const sortOrder = event.target.value;
+          function compare(a, b) {
+            if (event.target.value === "az") {
+              return a.userName.localeCompare(b.userName);
+            } else if (event.target.value === "za") {
+              return b.userName.localeCompare(a.userName);
+            }
+          }
+          userData.sort(compare);
+          displayPage(currentPage, userData);
+        });
     }
   }
 });

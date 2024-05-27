@@ -1,3 +1,4 @@
+
 let userData = [
   {
     id: 1,
@@ -11,7 +12,7 @@ let userData = [
     status: "inactive",
   },
   {
-    id: 12,
+    id: Math.floor(Math.random() * 1000000),
     name: "NgocSora",
     userName: "aNgocSora",
     password: "Lappy1111",
@@ -22,7 +23,7 @@ let userData = [
     status: "inactive",
   },
   {
-    id: 13,
+    id: Math.floor(Math.random() * 1000000),
     name: "NgocSora",
     userName: "bNgocSora",
     password: "Lappy1111",
@@ -33,7 +34,7 @@ let userData = [
     status: "inactive",
   },
   {
-    id: 14,
+    id: Math.floor(Math.random() * 1000000),
     name: "NgocSora",
     userName: "cNgocSora",
     password: "Lappy1111",
@@ -44,7 +45,7 @@ let userData = [
     status: "inactive",
   },
   {
-    id: 15,
+    id: Math.floor(Math.random() * 1000000),
     name: "NgocSora",
     userName: "dNgocSora",
     password: "Lappy1111",
@@ -55,7 +56,7 @@ let userData = [
     status: "inactive",
   },
   {
-    id: 16,
+    id: Math.floor(Math.random() * 1000000),
     name: "NgocSora",
     userName: "eNgocSora",
     password: "Lappy1111",
@@ -66,33 +67,33 @@ let userData = [
     status: "inactive",
   },
 ];
-let vari = 1;
+
 let categoryData = [
   {
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Computer & Laptop",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "Computer & Laptop",
     status: "available",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "SmartPhone",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "SmartPhone",
     status: "available",
     
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Headphones",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "Headphones",
     status: "unavailable",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Accessories",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "Accessories",
     status: "unavailable",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Camera & Photo",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "Camera & Photo",
     status: "available",
   },
   {
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "TV & Homes",
+    id: Math.floor(Math.random() * 1000000),
+    categoryName: "TV & Homes",
     status: "available",
   },
 ];
@@ -100,44 +101,44 @@ let categoryData = [
 
 let productData = [
   {
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "MSI",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "MSI",
     quantity: 40,
     price: 15000000,
     category: "Computer & Laptop",
     status: "available",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Samsung",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "Samsung",
     quantity: 50,
     price: 34000000,
     category: "SmartPhone",
     status: "available",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Airpod",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "Airpod",
     quantity: 0,
     price: 34000000,
     category: "Headphones",
     status: "unavailable",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Dareu MK 2000",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "Dareu MK 2000",
     quantity: 0,
     price: 34000000,
     category: "Accessories",
     status: "unavailable",
   },{
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "Leica",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "Leica",
     quantity: 50,
     price: 34000000,
     category: "Camera & Photo",
     status: "available",
   },
   {
-    id: Math.floor(Math.random() * 1000000) + vari,
-    name: "LGTV+",
+    id: Math.floor(Math.random() * 1000000),
+    productName: "LGTV+",
     quantity: 50,
     price: 34000000,
     category: "TV & Homes",

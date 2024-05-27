@@ -7,16 +7,57 @@
   </head>
   <body>
     <select id="select">
-        <option value="option1">Gateway 1</option>
-        <option value="option2">Gateway 2</option>
-        <option value="option3">Gateway 3</option>
-    </select>;
+      <option value="option1">Gateway 1</option>
+      <option value="option2">Gateway 2</option>
+      <option value="option3">Gateway 3</option></select
+    >;
     <script>
-    let userData = JSON.parse(localStorage.getItem("userData"));
-
-   
-console.log(userData);
-    
+      function getnewID(arr) {
+  let idSet = arr.map((item) => item.id);
+  let idnumber;
+  do {
+    idnumber = Math.floor(Math.random() * 1000000);
+  } while (idSet.includes(idnumber));
+  return idnumber;
+}
+let userData1 = [
+  {
+    id: 1,
+    name: "NgocSora",
+    userName: "NgocSora",
+    password: "Lappy1111@",
+    email: "vulengocvip2015@gmail.com",
+    permission: "admin",
+    order: [],
+    wishList: [],
+    status: "inactive",
+  },
+  {
+    id: getnewID(userData1),
+    name: "NgocSora",
+    userName: "aNgocSora",
+    password: "Lappy1111",
+    email: "vulengocvip201@gmail.com",
+    permission: "user",
+    order: [],
+    wishList: [],
+    status: "inactive",
+  }]
+     
+console.log(userData1);
+      newUser1 = {
+        id: getnewID(userData1),
+        name: "",
+        userName: "username.value",
+        password: "password.value",
+        email: "email.value",
+        permission: "user",
+        order: [],
+        wishList: [],
+        status: "inactive",
+      };
+      userData1.push(newUser1);
+      console.log(userData1);
     </script>
   </body>
 </html>

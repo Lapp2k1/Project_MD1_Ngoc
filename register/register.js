@@ -58,11 +58,11 @@ document
     }
 
     // Lưu trữ dữ liệu và chuyển hướng trang đăng nhập
-    let vari = 1;
-    // Đảm bảo chắc chắn không ai trùng ID
+    
+   
     if (isValid) {
       let newUser = {
-        id: Math.floor(Math.random() * 1000000) + vari,
+        id: Math.floor(Math.random() * 1000000),
         name: "",
         userName: username.value,
         password: password.value,
@@ -72,7 +72,7 @@ document
         wishList: [],
         status: "inactive",
       };
-      vari++;
+     
       userData.push(newUser);
       localStorage.setItem("userData", JSON.stringify(userData));
       Swal.fire({

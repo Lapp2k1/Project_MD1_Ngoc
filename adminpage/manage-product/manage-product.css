@@ -197,7 +197,7 @@
     font-weight: bold;
   }
   /* CSS cho form update */
-#updateUserForm {
+#updateProductForm {
   display: none;
   position: fixed;
   top: 50%;
