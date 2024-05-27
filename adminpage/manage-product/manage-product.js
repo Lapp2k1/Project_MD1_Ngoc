@@ -25,7 +25,10 @@ function render(data) {
         <td>${i + 1}</td>
         <td>${product.id}</td>
         <td>${product.productName}</td>
-        <td>${product.quantity}</td>
+        <td>${product.productName}</td>
+        <td>  <img src="${
+          product.img
+        }"  style="width: 40px;  height: 40px"></td>
         <td>${product.price}</td>
         <td>${product.category}</td>
         <td>${product.status}</td>
@@ -36,7 +39,9 @@ function render(data) {
             }">Update</button>
             <button class="action-button status-button" data-product-id="${
               product.id
-            }">${product.status === "available" ? "Unavailable" : "Available"}</button>
+            }">${
+            product.status === "available" ? "Unavailable" : "Available"
+          }</button>
             <button class="action-button delete-button" data-product-id="${
               product.id
             }">Delete</button>
@@ -94,7 +99,6 @@ document.getElementById("sortOption").addEventListener("change", (event) => {
     if (event.target.value === "az") {
       console.log("az");
       return a.productName.localeCompare(b.productName);
-      
     } else if (event.target.value === "za") {
       console.log("za");
       return b.productName.localeCompare(a.productName);
@@ -119,11 +123,8 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
   // Filter product data based on search term
   productData.forEach((product) => {
     const productNameLower = product.productName.toLowerCase();
-    
-    if (
-      productNameLower.indexOf(searchTerm) !== -1 
-      
-    ) {
+
+    if (productNameLower.indexOf(searchTerm) !== -1) {
       foundproducts.push(product); // Add matching product to foundproducts array
     }
   });
@@ -183,7 +184,6 @@ document.addEventListener("click", function (event) {
         const category = document.getElementById("category").value;
 
         const status = document.getElementById("status").value;
-
 
         // Cập nhật productData
         let productData = JSON.parse(localStorage.getItem("productData")) || [];

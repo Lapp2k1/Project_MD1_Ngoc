@@ -172,8 +172,8 @@
     display: flex; /* Arrange elements horizontally */
     justify-content: center; /* Center elements */
     position: relative;
-    top: 500px;
-    left: 500px;
+    top: 600px;
+    left: 50%;
   }
   
   .prev-page,

@@ -104,6 +104,7 @@ let productData = [
     id: Math.floor(Math.random() * 1000000),
     productName: "MSI",
     quantity: 40,
+    img: "https://anphat.com.vn/media/product/46739_laptop_msi_thin_gf63_12uc_887vn__1_.jpg",
     price: 15000000,
     category: "Computer & Laptop",
     status: "available",
