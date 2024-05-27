@@ -59,15 +59,16 @@
   }
   
   /* ---------------------------Sidebar css styles-------------------- */
- /* ---------------------------Sidebar css styles-------------------- */
 .sidebar {
     display: flex;
     flex-direction: column;
-    width: 200px; /* Adjust sidebar width as needed */
-    position: fixed; /* Fix sidebar to the left */
-    height: 100vh; /* Set sidebar height to 100% viewport height */
+    width: 200px;
+    position: absolute; 
+    height: 100vh; 
     background: #f4f4f4;
     margin-bottom: 20px;
+    
+   
   }
   
   /* Sidebar item styles */
@@ -110,7 +111,9 @@
     align-items: center;
     float: right; /* Make the container float to the right */
     width: calc(100% - 200px); /* Set width to remaining space minus sidebar */
-    margin-top: 70px; /* Optional margin for spacing */
+    margin-top: 20px; /* Optional margin for spacing */
+    z-index: 0;
+    position: relative;
   }
   
   /* Table styles */
@@ -171,8 +174,9 @@
   .pagination-container {
     display: flex; /* Arrange elements horizontally */
     justify-content: center; /* Center elements */
-    position: relative;
-    top: 600px;
+   position: relative;
+    padding-bottom: 10px;
+    top:680px;
     left: 50%;
   }
   

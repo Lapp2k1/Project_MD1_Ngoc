@@ -14,6 +14,12 @@ document.querySelector(".log-out").addEventListener("click", function () {
   localStorage.removeItem("productLogin");
 });
 
+// Đặt tên biến----------
+let productData = JSON.parse(localStorage.getItem("productData")) || [];
+const tableBody = document.getElementById("categoryBody");
+const itemsPerPage = 5; //Số item trên trang phân chia
+let currentPage = 1;
+
 // Global render function
 function render(data) {
   const tableBody = document.getElementById("categoryBody");
@@ -25,10 +31,10 @@ function render(data) {
         <td>${i + 1}</td>
         <td>${product.id}</td>
         <td>${product.productName}</td>
-        <td>${product.productName}</td>
-        <td>  <img src="${
+        <td  style="text-align: center">  <img src="${
           product.img
-        }"  style="width: 40px;  height: 40px"></td>
+        }"  style="width: 50%"></td>
+        <td>${product.quantity}</td>
         <td>${product.price}</td>
         <td>${product.category}</td>
         <td>${product.status}</td>
@@ -68,12 +74,7 @@ function displayPage(page, data) {
   prevButton.disabled = page === 1;
   nextButton.disabled = page === Math.ceil(data.length / itemsPerPage);
 }
-// Sort function
 
-let productData = JSON.parse(localStorage.getItem("productData")) || [];
-const tableBody = document.getElementById("categoryBody");
-const itemsPerPage = 5; //Số item trên trang phân chia
-let currentPage = 1;
 render(productData);
 // Chạy hàm khởi tạo
 displayPage(currentPage, productData);
@@ -94,14 +95,20 @@ document.querySelector(".next-page").addEventListener("click", () => {
 
 // Tạo sự kiện onchange khi select sort
 document.getElementById("sortOption").addEventListener("change", (event) => {
-  const sortOrder = event.target.value;
   function compare(a, b) {
     if (event.target.value === "az") {
-      console.log("az");
       return a.productName.localeCompare(b.productName);
     } else if (event.target.value === "za") {
-      console.log("za");
       return b.productName.localeCompare(a.productName);
+    } else if (event.target.value === "pricedown") {
+      console.log("cc");
+      return JSON.stringify(a.price).localeCompare(JSON.stringify(b.price));
+    } else if (event.target.value === "priceup") {
+      return JSON.stringify(b.price).localeCompare(JSON.stringify(a.price));
+    } else if (event.target.value === "category") {
+      return JSON.stringify(b.category).localeCompare(JSON.stringify(a.category));
+    } else if (event.target.value === "status") {
+      return JSON.stringify(b.status).localeCompare(JSON.stringify(a.status));
     }
   }
   productData.sort(compare);
@@ -128,7 +135,7 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
       foundproducts.push(product); // Add matching product to foundproducts array
     }
   });
-  console.log(foundproducts);
+
   render(foundproducts);
   // Chạy hàm khởi tạo
   displayPage(currentPage, foundproducts);
@@ -136,24 +143,25 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
   document.querySelector(".prev-page").addEventListener("click", () => {
     if (currentPage > 1) {
       currentPage--;
-      displayPage(currentPage, foundproducts);
+      displayPage(currentPage, productData);
     }
   });
 
   document.querySelector(".next-page").addEventListener("click", () => {
-    if (currentPage < Math.ceil(foundproducts.length / itemsPerPage)) {
+    if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
       currentPage++;
-      displayPage(currentPage, foundproducts);
+      displayPage(currentPage, productData);
     }
   });
-
   // Tạo sự kiện onchange khi select sort
   document.getElementById("sortOption").addEventListener("change", (event) => {
     const sortOrder = event.target.value;
     function compare(a, b) {
       if (event.target.value === "az") {
+        console.log("az");
         return a.productName.localeCompare(b.productName);
       } else if (event.target.value === "za") {
+        console.log("za");
         return b.productName.localeCompare(a.productName);
       }
     }
@@ -182,7 +190,7 @@ document.addEventListener("click", function (event) {
         const quantity = document.getElementById("quantity").value;
         const price = document.getElementById("price").value;
         const category = document.getElementById("category").value;
-
+        const fileUpload = document.getElementById("imagelink").value;
         const status = document.getElementById("status").value;
 
         // Cập nhật productData
@@ -190,6 +198,7 @@ document.addEventListener("click", function (event) {
         productData.forEach((product) => {
           if (product.id === productId) {
             product.productName = productname;
+            product.img = fileUpload;
             product.quantity = quantity;
             product.price = price;
             product.category = category;
@@ -206,36 +215,6 @@ document.addEventListener("click", function (event) {
         render(productData);
         // Chạy hàm khởi tạo
         displayPage(currentPage, productData);
-        // Tạo sự kiện phân trang
-        document.querySelector(".prev-page").addEventListener("click", () => {
-          if (currentPage > 1) {
-            currentPage--;
-            displayPage(currentPage, productData);
-          }
-        });
-
-        document.querySelector(".next-page").addEventListener("click", () => {
-          if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
-            currentPage++;
-            displayPage(currentPage, productData);
-          }
-        });
-
-        // Tạo sự kiện onchange khi select sort
-        document
-          .getElementById("sortOption")
-          .addEventListener("change", (event) => {
-            const sortOrder = event.target.value;
-            function compare(a, b) {
-              if (event.target.value === "az") {
-                return a.productName.localeCompare(b.productName);
-              } else if (event.target.value === "za") {
-                return b.productName.localeCompare(a.productName);
-              }
-            }
-            productData.sort(compare);
-            displayPage(currentPage, productData);
-          });
       });
     document
       .getElementById("cancelUpdate")
@@ -261,11 +240,9 @@ document.addEventListener("click", function (event) {
         if (product.status === "available") {
           product.status = "unavailable";
           event.target.innerHTML = "Available";
-          console.log("1");
         } else {
           product.status = "available";
           event.target.innerHTML = "Unavailable";
-          console.log("2");
         }
       }
     });
@@ -276,36 +253,6 @@ document.addEventListener("click", function (event) {
     render(productData);
     // Chạy hàm khởi tạo
     displayPage(currentPage, productData);
-    // Tạo sự kiện phân trang
-    document.querySelector(".prev-page").addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        displayPage(currentPage, productData);
-      }
-    });
-
-    document.querySelector(".next-page").addEventListener("click", () => {
-      if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
-        currentPage++;
-        displayPage(currentPage, productData);
-      }
-    });
-
-    // Tạo sự kiện onchange khi select sort
-    document
-      .getElementById("sortOption")
-      .addEventListener("change", (event) => {
-        const sortOrder = event.target.value;
-        function compare(a, b) {
-          if (event.target.value === "az") {
-            return a.productName.localeCompare(b.productName);
-          } else if (event.target.value === "za") {
-            return b.productName.localeCompare(a.productName);
-          }
-        }
-        productData.sort(compare);
-        displayPage(currentPage, productData);
-      });
   }
 });
 
@@ -325,42 +272,56 @@ document.addEventListener("click", function (event) {
       let productData = JSON.parse(localStorage.getItem("productData")) || [];
       productData = productData.filter((product) => product.id !== productId);
       localStorage.setItem("productData", JSON.stringify(productData));
+    }
+    // Cập nhật bảng
 
+    render(productData);
+    // Chạy hàm khởi tạo
+    displayPage(currentPage, productData);
+  }
+});
+// --------------------thêm product------------
+document.getElementById("addBtn").addEventListener("click", function (event) {
+  // Hiển thị form update
+  document.getElementById("updateProductForm").style.display = "block";
+
+  // Thêm sự kiện cho nút Submit trong form
+  document
+    .getElementById("submitUpdate")
+    .addEventListener("click", function () {
+      // Lấy dữ liệu từ form
+      const productname = document.getElementById("productname").value;
+      const quantity = document.getElementById("quantity").value;
+      const price = document.getElementById("price").value;
+      const category = document.getElementById("category").value;
+      const fileUpload = document.getElementById("imagelink").value;
+      const status = document.getElementById("status").value;
+
+      // Cập nhật productData
+      let newProduct = {
+        id: Math.floor(Math.random() * 1000000),
+        productName: productname,
+        img: fileUpload,
+        quantity: quantity,
+        price: price,
+        category: category,
+        status: status,
+      };
+
+      productData.push(newProduct);
+      localStorage.setItem("productData", JSON.stringify(productData));
+
+      // Ẩn form update
+      document.getElementById("updateProductForm").style.display = "none";
       // Cập nhật bảng
-
       render(productData);
       // Chạy hàm khởi tạo
       displayPage(currentPage, productData);
-      // Tạo sự kiện phân trang
-      document.querySelector(".prev-page").addEventListener("click", () => {
-        if (currentPage > 1) {
-          currentPage--;
-          displayPage(currentPage, productData);
-        }
+    }),
+    document
+      .getElementById("cancelUpdate")
+      .addEventListener("click", function () {
+        // Ẩn form update
+        document.getElementById("updateProductForm").style.display = "none";
       });
-
-      document.querySelector(".next-page").addEventListener("click", () => {
-        if (currentPage < Math.ceil(productData.length / itemsPerPage)) {
-          currentPage++;
-          displayPage(currentPage, productData);
-        }
-      });
-
-      // Tạo sự kiện onchange khi select sort
-      document
-        .getElementById("sortOption")
-        .addEventListener("change", (event) => {
-          const sortOrder = event.target.value;
-          function compare(a, b) {
-            if (event.target.value === "az") {
-              return a.productName.localeCompare(b.productName);
-            } else if (event.target.value === "za") {
-              return b.productName.localeCompare(a.productName);
-            }
-          }
-          productData.sort(compare);
-          displayPage(currentPage, productData);
-        });
-    }
-  }
 });

@@ -75,14 +75,18 @@
     <!-- -----------------phần quản lý user-------------- -->
     <div class="manage-account-container">
       <span class="sort-function"
-        ><p>Sắp xếp sản phẩm theo tên:</p>
+        ><p>Sắp xếp sản phẩm theo:</p>
         <select name="sortoption" id="sortOption">
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
+          <option value="az">Tên A-Z</option>
+          <option value="za">Tên Z-A</option>
+          <option value="pricedown">Giá thấp - cao</option>
+          <option value="priceup">Giá cao - thấp</option>
+          <option value="category">Category</option>
+          <option value="status">Tình trạng</option>
         </select></span>
         <span class="add-product">
           <p>Thêm sản phẩm:</p>
-          <button id="addButton">Thêm</button>
+          <button id="addBtn">Thêm</button>
         </span>
       <h1>DANH SÁCH SẢN PHẨM</h1>
       <div class="search-bar-container">
@@ -120,20 +124,11 @@
     </div>
     <!-- Update Product Form -->
     <div
-      id="updateProductForm"
-      style="
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px;
-        border: 1px solid #ccc;
-      "
-    >
+      id="updateProductForm">
       <label for="productname">Product name:</label><br />
       <input type="text" id="productname" name="productname" /><br />
+      <label for="image">Product image link:</label><br />
+      <input type="text" id="imagelink" name="imagelink" /><br />
       <label for="quantity">Quantity:</label><br />
       <input type="text" id="quantity" name="quantity" /><br />
       <label for="price">Price:</label><br />

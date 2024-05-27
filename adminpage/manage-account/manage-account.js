@@ -129,34 +129,19 @@ document.getElementById("searchButton").addEventListener("click", (event) => {
   render(foundUsers);
   // Chạy hàm khởi tạo
   displayPage(currentPage, foundUsers);
-  // Tạo sự kiện phân trang
-  document.querySelector(".prev-page").addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      displayPage(currentPage, foundUsers);
-    }
-  });
-
-  document.querySelector(".next-page").addEventListener("click", () => {
-    if (currentPage < Math.ceil(foundUsers.length / itemsPerPage)) {
-      currentPage++;
-      displayPage(currentPage, foundUsers);
-    }
-  });
-
   // Tạo sự kiện onchange khi select sort
-  document.getElementById("sortOption").addEventListener("change", (event) => {
-    const sortOrder = event.target.value;
-    function compare(a, b) {
-      if (event.target.value === "az") {
-        return a.userName.localeCompare(b.userName);
-      } else if (event.target.value === "za") {
-        return b.userName.localeCompare(a.userName);
-      }
+document.getElementById("sortOption").addEventListener("change", (event) => {
+  const sortOrder = event.target.value;
+  function compare(a, b) {
+    if (event.target.value === "az") {
+      return a.userName.localeCompare(b.userName);
+    } else if (event.target.value === "za") {
+      return b.userName.localeCompare(a.userName);
     }
-    foundUsers.sort(compare);
-    displayPage(currentPage, foundUsers);
-  });
+  }
+  foundUsers.sort(compare);
+  displayPage(currentPage, foundUsers);
+});
 });
 
 // -------------------Quản trị user---------------
@@ -194,40 +179,6 @@ document.addEventListener("click", function (event) {
 
         // Ẩn form update
         document.getElementById("updateUserForm").style.display = "none";
-        // Cập nhật bảng
-        render(userData);
-        // Chạy hàm khởi tạo
-        displayPage(currentPage, userData);
-        // Tạo sự kiện phân trang
-        document.querySelector(".prev-page").addEventListener("click", () => {
-          if (currentPage > 1) {
-            currentPage--;
-            displayPage(currentPage, userData);
-          }
-        });
-
-        document.querySelector(".next-page").addEventListener("click", () => {
-          if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
-            currentPage++;
-            displayPage(currentPage, userData);
-          }
-        });
-
-        // Tạo sự kiện onchange khi select sort
-        document
-          .getElementById("sortOption")
-          .addEventListener("change", (event) => {
-            const sortOrder = event.target.value;
-            function compare(a, b) {
-              if (event.target.value === "az") {
-                return a.userName.localeCompare(b.userName);
-              } else if (event.target.value === "za") {
-                return b.userName.localeCompare(a.userName);
-              }
-            }
-            userData.sort(compare);
-            displayPage(currentPage, userData);
-          });
       });
     document
       .getElementById("cancelUpdate")
@@ -266,36 +217,6 @@ document.addEventListener("click", function (event) {
     render(userData);
     // Chạy hàm khởi tạo
     displayPage(currentPage, userData);
-    // Tạo sự kiện phân trang
-    document.querySelector(".prev-page").addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        displayPage(currentPage, userData);
-      }
-    });
-
-    document.querySelector(".next-page").addEventListener("click", () => {
-      if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
-        currentPage++;
-        displayPage(currentPage, userData);
-      }
-    });
-
-    // Tạo sự kiện onchange khi select sort
-    document
-      .getElementById("sortOption")
-      .addEventListener("change", (event) => {
-        const sortOrder = event.target.value;
-        function compare(a, b) {
-          if (event.target.value === "az") {
-            return a.userName.localeCompare(b.userName);
-          } else if (event.target.value === "za") {
-            return b.userName.localeCompare(a.userName);
-          }
-        }
-        userData.sort(compare);
-        displayPage(currentPage, userData);
-      });
   }
 });
 
@@ -321,36 +242,6 @@ document.addEventListener("click", function (event) {
       render(userData);
       // Chạy hàm khởi tạo
       displayPage(currentPage, userData);
-      // Tạo sự kiện phân trang
-      document.querySelector(".prev-page").addEventListener("click", () => {
-        if (currentPage > 1) {
-          currentPage--;
-          displayPage(currentPage, userData);
-        }
-      });
-
-      document.querySelector(".next-page").addEventListener("click", () => {
-        if (currentPage < Math.ceil(userData.length / itemsPerPage)) {
-          currentPage++;
-          displayPage(currentPage, userData);
-        }
-      });
-
-      // Tạo sự kiện onchange khi select sort
-      document
-        .getElementById("sortOption")
-        .addEventListener("change", (event) => {
-          const sortOrder = event.target.value;
-          function compare(a, b) {
-            if (event.target.value === "az") {
-              return a.userName.localeCompare(b.userName);
-            } else if (event.target.value === "za") {
-              return b.userName.localeCompare(a.userName);
-            }
-          }
-          userData.sort(compare);
-          displayPage(currentPage, userData);
-        });
     }
   }
 });
