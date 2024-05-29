@@ -4,9 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+    <link rel="stylesheet" href="./product-listview.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Public Sans:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/7b988689d5.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+   </head>
 <body>
+    <header>
+        <p>Welcome to Clicon online eCommerce store.</p>
+        <div class="header-content">
+          <div class="follow-us">
+            <p>Follow us:</p>
+            <ul class="social-icon-wrapper">
+              <li class="social-icon">
+                <a href="#"
+                  ><img class="twitter-icon" alt="" src="../public/twitter.svg"
+                /></a>
+                <a href="#"
+                  ><img class="facebook-icon" alt="" src="../public/facebook.svg"
+                /></a>
+                <a href="#"
+                  ><img
+                    class="pinterest-icon"
+                    alt=""
+                    src="../public/pinterest.svg"
+                /></a>
+                <a href="#"
+                  ><img class="reddit-icon" alt="" src="../public/reddit.svg"
+                /></a>
+                <a href="#"
+                  ><img class="youtube-icon" alt="" src="../public/youtube.svg"
+                /></a>
+                <a href="#"
+                  ><img
+                    class="instagram-icon"
+                    alt=""
+                    src="../public/instagram.svg"
+                /></a>
+              </li>
+            </ul>
+          </div>
+          <div class="divide-bar"></div>
+          <div class="multi-languagedropdown">
+            <div class="eng">Eng</div>
+            <div class="caretdown-container">
+              <img
+                class="caretdown-icon"
+                alt=""
+                src="../public/regularcaretdown.svg"
+              />
+            </div>
+          </div>
+  
+          <div class="multi-currencydropdown">
+            <div class="usd">USD</div>
+            <div class="caretdown-container">
+              <img
+                class="caretdown-icon"
+                alt=""
+                src="../public/regularcaretdown.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- ------------------------<navbar> -------------------->
+      <nav class="nav-bar">
+        <div class="logo">
+          <img class="icon" alt="Company Logo" src="../public/icon.svg" />
+          <h1 class="clicon">CLICON</h1>
+        </div>
+        <div class="search">
+          <input
+            class="search-input"
+            placeholder="Search for anything..."
+            type="text"
+          />
+          <img
+            class="search-icon"
+            alt="Search Icon"
+            src="../public/regularmagnifyingglass.svg"
+          />
+        </div>
+        <div class="icons">
+          <div class="cart">
+            <img
+              class="cart-icon"
+              alt="Cart Icon"
+              src="https://www.freeiconspng.com/thumbs/cart-icon/cart-icon-16.png"
+            />
+            <div class="cart-quantity" id="cart-quantity" >0</div>
+          </div>
+          <img
+            class="wishlist-icon"
+            alt="Favorites Icon"
+            src="../public/heart.svg"
+          />
+          <span><p style="display: none;" class="user-name" id="userName">Wanna Login?</p><img
+            class="user-icon"
+            alt="User Icon"
+            src="../public/regularuser.svg"
+          /></span>
+          
+        </div>
+        <div class="user-menu" style="display: none" id="userMenu">
+          <a class="user-register" style="display: block;" href="../register/register.html">Register</a>
+          <a class="user-login" style="display: block;" href="../Login/login.html">Login</a>
+        </div>
+      </nav>
+
+
+<div class="sidebar">
+    <h2>Lọc sản phẩm</h2>
+    <div
+    id="updateProductForm">
+    <label for="productname">Từ khóa:</label><br />
+    <input type="text" id="productname" name="productname" /><br />
+    <label for="price">Giá trên:</label><br />
+    <input type="text" id="price-up" name="price" /><br />
+    <label for="price">Giá dưới:</label><br />
+    <input type="text" id="price-down" name="price" /><br />
+    <label for="category">Danh mục:</label><br />
+    <input type="text" id="category" name="category" /><br />
+    <label for="status">Status:</label><br />
+    <input type="text" id="status" name="status" /><br />
+    <input type="button" value="Submit" id="submitUpdate" />
+    <input type="button" value="Cancel" id="cancelUpdate" />
+  </div>
     
+</div>
+
+<div id="product-list" class="product-list"></div>
+
 </body>
 <script src="./product-listview.js"></script>
 </html>

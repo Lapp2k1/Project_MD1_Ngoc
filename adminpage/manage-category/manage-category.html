@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Account</title>
-    <link rel="stylesheet" href="./manage-product.css" />
+    <link rel="stylesheet" href="./manage-category.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Public Sans:wght@400;500;600;700&display=swap"
@@ -54,17 +54,11 @@
           class="manage manage-general"
           >Dashboard</a
         >
-        <a
-          href="http://127.0.0.1:5500/adminpage/manage-account/manage-account.html"
-          class="manage manage-account"
-          >Quản lý tài khoản</a
-        >
+        <a href="http://127.0.0.1:5500/adminpage/manage-account/manage-account.html" class="manage manage-account">Quản lý tài khoản</a>
         <a href="http://127.0.0.1:5500/adminpage/manage-category/manage-category.html" class="manage manage-list"
           >Quản lý danh mục</a
         >
-        <a
-          href="http://127.0.0.1:5500/adminpage/manage-product/manage-product.html"
-          class="manage manage-product"
+        <a href="http://127.0.0.1:5500/adminpage/manage-product/manage-product.html" class="manage manage-product"
           >Quản lý sản phẩm</a
         >
         <a href="manage-order.html" class="manage manage-order"
@@ -72,28 +66,25 @@
         >
       </div>
     </aside>
-    <!-- -----------------phần quản lý user-------------- -->
+    <!-- -----------------phần quản lý category-------------- -->
     <div class="manage-account-container">
       <span class="sort-function"
-        ><p>Sắp xếp sản phẩm theo:</p>
+        ><p>Sắp xếp danh mục theo:</p>
         <select name="sortoption" id="sortOption">
           <option value="az">Tên A-Z</option>
           <option value="za">Tên Z-A</option>
-          <option value="pricedown">Giá thấp - cao</option>
-          <option value="priceup">Giá cao - thấp</option>
-          <option value="category">Category</option>
           <option value="status">Tình trạng</option>
         </select></span>
         <span class="add-product">
-          <p>Thêm sản phẩm:</p>
+          <p>Thêm danh mục:</p>
           <button id="addBtn">Thêm</button>
         </span>
-      <h1>DANH SÁCH SẢN PHẨM</h1>
+      <h1>DANH SÁCH DANH MỤC</h1>
       <div class="search-bar-container">
         <input
           type="text"
           id="searchInput"
-          placeholder="Tìm kiếm sản phẩm..."
+          placeholder="Tìm kiếm danh mục..."
         />
         <button id="searchButton">Tìm kiếm</button>
       </div>
@@ -103,12 +94,8 @@
         <thead class="table-thead">
           <tr class="table-tr">
             <th class="table-th" width="10%">STT</th>
-            <th class="table-th">Mã sản phẩm</th>
-            <th class="table-th">Tên sản phẩm</th>
-            <th class="table-th">Hình ảnh</th>
-            <th class="table-th">Số lượng</th>
-            <th class="table-th">Giá tiền</th>
-            <th class="table-th">Danh mục</th>
+            <th class="table-th">Mã danh mục</th>
+            <th class="table-th">Tên danh mục</th>
             <th class="table-th">Tình trạng</th>
             <th class="table-th">Action</th>
           </tr>
@@ -122,25 +109,17 @@
       <span class="current-page">Page 1</span>
       <button class="next-page">Next</button>
     </div>
-    <!-- Update Product Form -->
+    <!-- Update Category Form -->
     <div
-      id="updateProductForm">
-      <label for="productname">Product name:</label><br />
-      <input type="text" id="productname" name="productname" /><br />
-      <label for="image">Product image link:</label><br />
-      <input type="text" id="imagelink" name="imagelink" /><br />
-      <label for="quantity">Quantity:</label><br />
-      <input type="text" id="quantity" name="quantity" /><br />
-      <label for="price">Price:</label><br />
-      <input type="text" id="price" name="price" /><br />
-      <label for="category">Category:</label><br />
-      <input type="text" id="category" name="category" /><br />
+      id="updateCategoryForm">
+      <label for="categoryname">Tên danh mục:</label><br />
+      <input type="text" id="categoryname" name="categoryname" /><br />
       <label for="status">Status:</label><br />
       <input type="text" id="status" name="status" /><br />
       <input type="button" value="Submit" id="submitUpdate" />
       <input type="button" value="Cancel" id="cancelUpdate" />
     </div>
 
-    <script src="./manage-product.js"></script>
+    <script src="./manage-.category.js"></script>
   </body>
 </html>

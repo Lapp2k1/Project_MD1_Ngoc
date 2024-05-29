@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./product-detailview.css">
+    <link rel="stylesheet" href="./cart.css">
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Public Sans:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-    />
-
-    <script
-      src="https://kit.fontawesome.com/7b988689d5.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Public Sans:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+  />
+  <script
+    src="https://kit.fontawesome.com/7b988689d5.js"
+    crossorigin="anonymous"
+    defer=""
+  ></script>
 </head>
 <body>
     <header>
@@ -123,9 +122,23 @@
           <a class="user-login" style="display: block;" href="../Login/login.html">Login</a>
         </div>
       </nav>
-      <div id="product-detail" class="product-detail"></div>
-
-      <script src="./product-detailedview.js"></script>
+      <div id="table" class="table-body">
+        <table class="table-inner">
+          <thead class="table-thead">
+            <tr class="table-tr">
+              <th class="table-th" width="10%">STT</th>
+               <th class="table-th">Tên sản phẩm</th>
+              <th class="table-th">Hình ảnh</th>
+              <th class="table-th">Số lượng</th>
+              <th class="table-th">Giá tiền</th>
+              <th class="table-th">Tổng giá tiền</th>
+              <th class="table-th">Action</th>
+            </tr>
+          </thead>
+        
+          <tbody id="categoryBody"></tbody>
+        </table>
+      </div>
 </body>
-
+<script src="./cart.js"></script>
 </html>

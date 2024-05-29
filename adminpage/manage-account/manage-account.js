@@ -22,7 +22,7 @@ function render(data) {
   data.forEach((user, i) => {
     stringHTML += `
       <tr>
-        <td>${i + 1}</td>
+        <td>${(currentPage-1)*itemsPerPage + i +1}</td>
         <td>${user.userName}</td>
         <td>${user.email}</td>
         <td>${user.permission}</td>

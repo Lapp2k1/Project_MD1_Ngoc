@@ -8,10 +8,10 @@ document.querySelector(".admin-img").addEventListener("click", function () {
 });
 // đăng xuất cho admin
 document.querySelector(".log-out").addEventListener("click", function () {
-  let productData = JSON.parse(localStorage.getItem("productData")) || [];
-  productData[0].status = "inactive";
-  localStorage.setItem("productData", JSON.stringify(productData));
-  localStorage.removeItem("productLogin");
+  let userData = JSON.parse(localStorage.getItem("userData")) || [];
+  userData[0].status = "inactive";
+  localStorage.setItem("userData", JSON.stringify(userData));
+  localStorage.removeItem("userLogin");
 });
 
 // Đặt tên biến----------
@@ -28,7 +28,7 @@ function render(data) {
   data.forEach((product, i) => {
     stringHTML += `
       <tr>
-        <td>${i + 1}</td>
+        <td>${(currentPage - 1) * itemsPerPage + i + 1}</td>
         <td>${product.id}</td>
         <td>${product.productName}</td>
         <td  style="text-align: center">  <img src="${
@@ -106,7 +106,9 @@ document.getElementById("sortOption").addEventListener("change", (event) => {
     } else if (event.target.value === "priceup") {
       return JSON.stringify(b.price).localeCompare(JSON.stringify(a.price));
     } else if (event.target.value === "category") {
-      return JSON.stringify(b.category).localeCompare(JSON.stringify(a.category));
+      return JSON.stringify(b.category).localeCompare(
+        JSON.stringify(a.category)
+      );
     } else if (event.target.value === "status") {
       return JSON.stringify(b.status).localeCompare(JSON.stringify(a.status));
     }
@@ -307,9 +309,26 @@ document.getElementById("addBtn").addEventListener("click", function (event) {
         category: category,
         status: status,
       };
+      let add_product = true;
 
-      productData.push(newProduct);
-      localStorage.setItem("productData", JSON.stringify(productData));
+      if (
+        newProduct.productName === "" ||
+        newProduct.img === "" ||
+        newProduct.category === "" ||
+        newProduct.price === "" ||
+        newProduct.quantity === "" ||
+        newProduct.status === ""
+      ) {
+        add_product = false;
+      }
+
+      console.log(add_product);
+      if (add_product) {
+        productData.push(newProduct);
+        localStorage.setItem("productData", JSON.stringify(productData));
+      } else {
+        alert("Không được để trống các giá trị!");
+      }
 
       // Ẩn form update
       document.getElementById("updateProductForm").style.display = "none";

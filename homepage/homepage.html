@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
     />
+
     <script
       src="https://kit.fontawesome.com/7b988689d5.js"
       crossorigin="anonymous"
@@ -111,18 +112,18 @@
           alt="Favorites Icon"
           src="../public/heart.svg"
         />
-        <img
+        <span><p style="display: none;" class="user-name" id="userName">Wanna Login?</p><img
           class="user-icon"
           alt="User Icon"
           src="../public/regularuser.svg"
-        />
+        /></span>
+        
       </div>
-      <div class="user-menu" id="userMenu">
-        <a href="../register/register.html">Register</a>
-        <a href="../Login/login.html">Login</a>
+      <div class="user-menu" style="display: none" id="userMenu">
+        <a class="user-register" style="display: block;" href="../register/register.html">Register</a>
+        <a class="user-login" style="display: block;" href="../Login/login.html">Login</a>
       </div>
     </nav>
-    <!-- ----------------------categorymenu------------- -->
     <nav class="bottom-nav">
       <ul class="left-side">
         <li class="category">
@@ -132,12 +133,6 @@
             alt=""
             src="../public/regularcaretdown-2.svg"
           />
-          <div id="category-items" style="display: none;">
-            <span>Item 1</span>
-            <span>Item 2</span>
-            <span>Item 3</span>
-            <!-- Add more items as needed -->
-          </div>
         </li>
         <li class="track-order-wrapper">
           <a href="#" class="track-order">
@@ -191,7 +186,223 @@
         </a>
       </div>
     </nav>
-
+    <div class="category-container">
+      <div id="category-items" style="display: none">
+        <span class="category category1"
+          ><a href="">Computer & Laptop</a>
+          <div class="category-items-list1">
+            <span class="category-list"><a href="">MSI</a></span>
+            <span class="category-list"><a href="">ASUS</a></span>
+            <span class="category-list"><a href="">LENOVO</a></span>
+            <span class="category-list"><a href="">DELL</a></span>
+          </div></span
+        >
+        <span class="category category2"
+          ><a href="">SmartPhone</a>
+          <div class="category-items-list2">
+            <span class="category-list"><a href="">SAMSUNG</a></span>
+            <span class="category-list"><a href="">IPHONE</a></span>
+            <span class="category-list"><a href="">OPPO</a></span>
+            <span class="category-list"><a href="">XIAOMI</a></span>
+          </div></span
+        >
+        <span class="category category3"
+          ><a href="">Headphones</a>
+          <div class="category-items-list3">
+            <span class="category-list"><a href="">AirPod</a></span>
+            <span class="category-list"><a href="">HyperX</a></span>
+            <span class="category-list"><a href="">Corsair</a></span>
+            <span class="category-list"><a href="">Razer</a></span>
+          </div></span
+        >
+        <span class="category category4"
+          ><a href="">Accessories</a>
+          <div class="category-items-list4">
+            <span class="category-list"><a href="">Chuột</a></span>
+            <span class="category-list"><a href="">Bàn phím</a></span>
+            <span class="category-list"><a href="">Lót chuột</a></span>
+            <span class="category-list"><a href="">Ghế gaming</a></span>
+          </div></span
+        >
+        <span class="category category5"
+          ><a href="">Camera & Photo</a>
+          <div class="category-items-list5">
+            <span class="category-list"><a href="">Canon</a></span>
+            <span class="category-list"><a href="">Leica</a></span>
+            <span class="category-list"><a href="">Kodak</a></span>
+            <span class="category-list"><a href="">Panasonic</a></span>
+          </div></span
+        >
+        <span class="category category6"
+          ><a href="">TV & Homes</a>
+          <div class="category-items-list6">
+            <span class="category-list"><a href="">LG</a></span>
+            <span class="category-list"><a href="">XIAOMI</a></span>
+            <span class="category-list"><a href="">Samsung</a></span>
+            <span class="category-list"><a href="">Sony</a></span>
+          </div></span
+        >
+      </div>
+    </div>
+    <!-- -------------banner------------ -->
+    <section class="banner">
+      <div class="widget">
+        <div class="content">
+          <div class="heading">
+            <div class="caption">
+              <hr class="divider" />
+              <p class="tagline">THE BEST PLACE TO PLAY</p>
+            </div>
+            <h1 class="product-title">Xbox Consoles</h1>
+          </div>
+          <p class="offer">
+            Save up to 50% on select Xbox games. Get 3 months of PC Game Pass
+            for $2 USD.
+          </p>
+          <button class="shop-button">
+            <b>Shop Now</b>
+            <img
+              class="arrow-icon"
+              alt=""
+              src="../public/regulararrowright.svg"
+            />
+          </button>
+        </div>
+        <figure class="product-image">
+          <img class="image" alt="" src="../public/image@2x.png" />
+          <figcaption class="price">$299</figcaption>
+        </figure>
+      </div>
+      <span>
+        <div class="widget1">
+          <div class="content">
+            <div class="heading">
+              <div class="caption">
+                <hr class="divider" />
+                <p class="tagline">SUMMER SALES</p>
+              </div>
+              <h1 class="product-title">New Google Pixel 6 Pro</h1>
+            </div>
+            <p class="offer">
+              Unlocked Smartphone with Advanced Pixel Camera and Telephoto Lens
+              - 128GB - Stormy Black.
+            </p>
+            <button class="shop-button">
+              <b>Shop Now</b>
+              <img
+                class="arrow-icon"
+                alt=""
+                src="../public/regulararrowright.svg"
+              />
+            </button>
+          </div>
+          <figure class="product-image">
+            <img class="image" alt="" src="../public/image-5@2x.png"">
+            <figcaption class="price">$399</figcaption>
+          </figure>
+        </div>
+        <div class="widget1">
+          <div class="content">
+            <div class="heading">
+              <div class="caption">
+                <hr class="divider" />
+                <p class="tagline">INTRODUCING</p>
+              </div>
+              <h1 class="product-title">New Apple Home Mini</h1>
+            </div>
+            <p class="offer">
+              Jam-packed with innovation, HomePod mini delivers unexpectedly.
+            </p>
+            <button class="shop-button">
+              <b>Shop Now</b>
+              <img
+                class="arrow-icon"
+                alt=""
+                src="../public/regulararrowright.svg"
+              />
+            </button>
+          </div>
+          <figure class="product-image">
+            <img class="image" alt="" src="../public/image-6@2x.png" />
+            <figcaption class="price">$499</figcaption>
+          </figure>
+        </div>
+      </span>
+    </section>
+<!-- footer-------------------- -->
+<footer>
+     <div class="clicon-ecommerce">
+      <span><img class="icon1" loading="lazy" alt="" src="../public/icon-1.svg" />
+      <h1 class="clicon1">CLICON</h1></span>
+      <span>  <div class="contact-info">
+        <p class="customer-supports">Customer Supports: (629) 555-0129</p>
+        <p>4517 Washington Ave. Manchester, Kentucky 39495</p>
+        <p>info@kinbo.com</p>
+      </div></span>
+    
+    </div>
+    <div class="top-category1">
+      <h2 class="top-category2">Top Category</h2>
+      <div class="item1">
+        <ul class="footer-links">
+          <li class="electronics">Computer & Laptop</li>
+          <li class="electronics1">SmartPhone</li>
+          <li class="electronics2">Headphone</li>
+          <li class="electronics3">Accessories</li>
+          <li class="electronics4">Camera & Photo</li>
+          <li class="electronics5">TV & Homes</li>
+        </ul>
+        <button class="button">
+          <span>Browse All Product</span>
+          <img class="regulararrowright-icon10" alt="" src="../public/regulararrowright-10.svg" />
+        </button>
+      </div>
+    </div>
+    <div class="quick-links2">
+      <h2 class="quick-links3">Quick links</h2>
+      <ul class="item2">
+        <li class="electronics6">Shop Product</li>
+        <li class="electronics7">Shopping Cart</li>
+        <li class="electronics8">Wishlist</li>
+        <li class="electronics9">Compare</li>
+        <li class="electronics10">Track Order</li>
+        <li class="electronics11">Customer Help</li>
+        <li class="electronics12">About Us</li>
+      </ul>
+    </div>
+    <div class="quick-links4">
+      <h2 class="download-app">Download App</h2>
+      <div class="links">
+        <div class="mobile-app">
+          <img class="icongoogle-play-1" alt="" src="../public/icongoogleplay-1.svg" />
+          <div class="info7">
+            <span class="get-it-now">Get it now</span>
+            <span class="google-play">Google Play</span>
+          </div>
+        </div>
+        <div class="mobile-app1">
+          <img class="apple-negative-1-icon" alt="" src="../public/applenegative-1.svg" />
+          <div class="info8">
+            <span class="get-it-now1">Get it now</span>
+            <span class="app-store">App Store</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popular-tag">
+      <h2 class="popular-tag1">Popular Tag</h2>
+      <div class="tag">
+        <div class="row">
+          <button class="tag-button">Game</button>
+          <button class="tag-button">iPhone</button>
+          <button class="tag-button">TV</button>
+          <button class="tag-button">Asus Laptops</button>
+        </div>
+        <!-- More rows here -->
+      </div>
+    </div>
+  </section>
+</footer>
     <script src="./homepage.js"></script>
   </body>
 </html>

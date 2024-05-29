@@ -6,7 +6,9 @@
   list-style-type: none;
   text-decoration: none;
 }
-
+body {
+  background-color: #ececec;
+}
 /* -- ------------------------<css header> ------------------- */
 header {
   display: flex;
@@ -79,6 +81,7 @@ header {
   width: 20px;
   position: relative;
   left: 20px;
+  cursor: pointer;
 }
 .search-input {
   width: calc(100% - 60px);
@@ -96,13 +99,17 @@ header {
 .icons {
   display: flex;
   gap: 10px;
-  position: relative; 
+  position: relative;
 }
+.icons span{display: flex;
+text-align: center;
+align-items: center;}
 .cart {
   display: flex;
   gap: 10px;
   position: relative;
-left: 20px;}
+  left: 20px;
+}
 .cart-icon {
   width: 32px;
   height: 40px;
@@ -111,29 +118,33 @@ left: 20px;}
   position: relative;
   left: -44px;
   top: -2px;
-
 }
 .user-menu {
   display: none;
   position: absolute;
-  top: 105px; 
-  right: 0;
+  top: 105px;
+  right: 20px;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
+  gap: 20px;
+  justify-content: center;
 }
-
-/* bottomnav css------------------- */
+.user-icon{ width: 32px;
+  height: 40px;}
+  .user-name{color: white;display: none;}
+ 
+/* category css------------------- */
 .bottom-nav {
+  border-bottom: 1px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
   background-color: #f8f8f8;
   align-items: center;
-  position: relative; 
 }
 
 .bottom-nav .left-side,
@@ -148,11 +159,12 @@ left: 20px;}
   align-items: center;
   gap: 10px;
 }
-.bottom-nav .left-side{
+.bottom-nav .left-side {
   display: flex;
   gap: 40px;
 }
-.bottom-nav a {display: flex;
+.bottom-nav a {
+  display: flex;
   text-decoration: none;
   color: inherit;
   align-items: center;
@@ -162,25 +174,231 @@ left: 20px;}
 .bottom-nav img {
   height: 24px;
   width: 24px;
-  
 }
+
 .category {
   cursor: pointer;
- padding: 10px;
+  padding: 10px;
+  display: flex;
+  gap: 20px;
 }
 
 .bottom-nav .left-side > li:hover {
-  background-color: #f0f0f0; /* Changes the background color of the <li> tags when they're hovered over */
+  background-color: #e0e0e0;
+}
+.category-container {
+  display: flex;
+  position: absolute;
+  z-index: 10;
 }
 #category-items {
-  display: flex;
+  display: none;
   flex-direction: column;
-  position: absolute; /* This positions #category-items relative to the nearest positioned ancestor */
-  top: 100%; /* This moves #category-items below the .bottom-nav element */
-  left: 80px; /* This aligns #category-items to the left edge of the .bottom-nav element */
-  /* Rest of your #category-items styles */
+  width: 200px;
+  height: 40%;
+  background-color: white;
+  margin-left: 20vh;
+  z-index: 2;
+  text-align: center;
+  gap: 20px;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 #category-items span:hover {
   background-color: #e0e0e0; /* Changes the background color of the menu choices when they're hovered over */
 }
+#category-items-list {
+  display: flex;
+  left: 320px;
+  flex-direction: column;
+  width: 200px;
+  height: 64%;
+  text-align: center;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+  gap: 20px;
+  z-index: 3;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.category-items-list2 {
+  top: 70px !important;
+}
+.category-items-list3 {
+  top: 131px !important;
+}
+.category-items-list4 {
+  top: 190px !important;
+}
+.category-items-list5 {
+  top: 245px !important;
+}
+.category-items-list6 {
+  top: 300px !important;
+}
+.category-list {
+  cursor: pointer;
+  padding: 10px;
+}
+.category-list:hover {
+  background-color: gray;
+}
+
+.category-items-list1,
+.category-items-list2,
+.category-items-list3,
+.category-items-list4,
+.category-items-list5,
+.category-items-list6 {
+  position: absolute;
+  display: none;
+  top: 9px;
+  left: 90px;
+}
+span a {
+  color: black;
+}
+span a:hover {
+  color: red;
+}
+/* css banner................... */
+.banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.banner span {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.widget {
+  margin: 40px;
+  width: 90%;
+  height: 580px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.widget1 {
+  margin: 40px;
+  width: 90%;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.content {
+  padding: 20px;
+  height: 300px;
+}
+.heading {
+  margin-bottom: 20px;
+}
+
+.caption .divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.product-title {
+  font-size: 24px;
+  color: #333;
+}
+
+.offer {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.shop-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #0078d7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.shop-button .arrow-icon {
+  margin-left: 10px;
+}
+.shop-button:hover {
+  background-color: #1b6392;
+}
+.dot-navigation {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.product-image {
+  width: 80%;
+  position: relative;
+}
+
+.product-image .image {
+  width: 80%;
+  height: auto;
+}
+
+.price {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  background-color: rgba(55, 17, 145, 0.5);
+  color: #fff;
+  padding: 16px 5px;
+  border-radius: 50%;
+}
+/* css footer.............. */
+footer{display: flex;
+background-color: black;
+color: white;
+gap: 30px;
+justify-content: space-evenly;
+padding: 30px;}
+.clicon-ecommerce{display: flex;
+flex-direction: column;}
+.clicon-ecommerce span{display: flex;
+gap: 20px;
+padding: 20px;}
+.top-category1, .quick-links2{display: flex;
+flex-direction: column;
+gap: 20px;}
+.button .tag-button{
+    appearance: none;
+    background-color: #628c1f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+     color: #fff;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+   }
+  
+  

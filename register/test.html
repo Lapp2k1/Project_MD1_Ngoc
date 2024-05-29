@@ -20,44 +20,10 @@
   } while (idSet.includes(idnumber));
   return idnumber;
 }
-let userData1 = [
-  {
-    id: 1,
-    name: "NgocSora",
-    userName: "NgocSora",
-    password: "Lappy1111@",
-    email: "vulengocvip2015@gmail.com",
-    permission: "admin",
-    order: [],
-    wishList: [],
-    status: "inactive",
-  },
-  {
-    id: getnewID(userData1),
-    name: "NgocSora",
-    userName: "aNgocSora",
-    password: "Lappy1111",
-    email: "vulengocvip201@gmail.com",
-    permission: "user",
-    order: [],
-    wishList: [],
-    status: "inactive",
-  }]
-     
-console.log(userData1);
-      newUser1 = {
-        id: getnewID(userData1),
-        name: "",
-        userName: "username.value",
-        password: "password.value",
-        email: "email.value",
-        permission: "user",
-        order: [],
-        wishList: [],
-        status: "inactive",
-      };
-      userData1.push(newUser1);
-      console.log(userData1);
+const counts = {};
+const sampleArray = ['c', 'c', 'b', 'a'];
+sampleArray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+console.log(counts)
     </script>
   </body>
 </html>

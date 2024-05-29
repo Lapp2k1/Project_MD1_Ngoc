@@ -20,7 +20,7 @@ document
         user.userName === username.value && user.password === password.value
       );
     });
-
+console.log(userData[userIndex].status);
     // Validate và thông báo
     if (userData[userIndex].status === "block") {
       username.nextElementSibling.textContent = "Your account is blocked.";
@@ -53,20 +53,20 @@ document
     }
 
     // Chuyển hướng trang  + Tạo và lưu trữ userLogin
-
+    
     if (isValid) {
       userData[userIndex].status = "active";
       localStorage.setItem("userData", JSON.stringify(userData));
-      let userLogin = {
-        id: userData[userIndex].id,
-        name: userData[userIndex].name,
-        userName: userData[userIndex].userName,
-        email: userData[userIndex].email,
-        permission: userData[userIndex].permission,
-        status: userData[userIndex].status,
+        let userLogin = {
+          id: userData[userIndex].id,
+          name: userData[userIndex].name,
+          userName: userData[userIndex].userName,
+          email: userData[userIndex].email,
+          permission: userData[userIndex].permission,
+          status: userData[userIndex].status
       };
-      localStorage.setItem("userLogin", JSON.stringify(userLogin));
-
+      localStorage.setItem('userLogin', JSON.stringify(userLogin));
+      
       Swal.fire({
         title: "Đăng nhập thành công!",
         text: "Đang chuyển hướng...",
